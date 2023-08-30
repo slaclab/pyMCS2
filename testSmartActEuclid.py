@@ -18,7 +18,7 @@ logging.info("Stage serial number: {}".format(stageSN))
 
 cbxfelLog()
 
-IP = "134.79.219.36"
+IP = "192.168.1.10"
 units= 1000000000
 
 print("\nIP: {}".format(IP))
