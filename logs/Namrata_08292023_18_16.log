@@ -1,0 +1,107 @@
+root - INFO - BEGINNING TEST
+root - INFO - Stage serial number: Namrata
+root - INFO - Tester Name and Initials: NB
+root - INFO - Date: 08/29/2023, Time: 18:16:23
+root - INFO - Test Location: ANL Lab/Workshop 
+
+root - INFO - Item 1:
+root - INFO - Test Schedule Phase: Pre Bakeout
+
+root - INFO - Item 2:
+root - INFO - Station ID: C
+
+root - INFO - Item 3:
+root - INFO - Component ID: X23
+
+root - INFO - Item 4:
+root - INFO - Axis ID: X
+
+root - INFO - Item 5:
+root - INFO - Confirm the controller channel that this axis is assigned to in SLAC-I-120-174 matches the physical connection:
+root - INFO - y or n: n
+
+root - INFO - IP: 134.79.219.36
+
+root - INFO - Item 6:
+root - INFO - Enter controller channel (0/1/2): 0
+root - INFO - Confirm that the SmarAct Motion Control Software is configured to control the correct axis:
+root - INFO - y or n: n 
+
+root - INFO - Creating socket for 134.79.219.36 port
+root - INFO - Socket created.
+root - INFO - Connecting to 134.79.219.36 port
+root - INFO - Connected to 134.79.219.36
+
+root - INFO - Get serial number: "MCS2-00013416"
+root - INFO - Get positioner type name: "CT037/AT001"
+root - INFO - Positoner reference type: Hard Stop
+
+root - INFO - Setting test constraints.
+root - INFO - Maximum closed loop frequency = 100 Hz.
+root - INFO - Closed loop move velocity = 0.2 mm/s.
+root - INFO - Maximum axis acceleration = 0.1 mm/s^2.
+root - INFO - Test Constraints set.
+
+root - INFO - Reading test constraints.
+root - INFO - Max Closed Loop Frequency (Hz): 100
+root - INFO - Positoner velocity (units/sec): 200000000
+root - INFO - Positoner velocity (mm/sec): 0.2
+root - INFO - Positoner acceleration (units/sec2): 100000000
+root - INFO - Positoner acceleration (mm/sec2): 0.1
+
+root - INFO - Item 7:
+root - INFO - Confirm that the frequency, velocity, and acceleration parameters are consistent with the restrictions in Section 9.2 of this document.
+root - INFO - y or n:n 
+
+root - INFO - Item 8:
+root - INFO - Current position (units): -64133994
+root - INFO - Current position (mm): -0.064133994
+
+root - INFO - Item 9:
+root - INFO - Command an incremental movement of 1.0 mm in positive direction
+root - INFO - y or n: n
+
+root - INFO - Response was either n or skipped
+root - INFO - Cannot confirm visually that the stage has moved. 
+
+root - INFO - Cannot report direction of motion. 
+
+root - INFO - Current position (units): -64132073
+root - INFO - Current position (mm): -0.064132073
+
+root - INFO - Item 10:
+root - INFO - Command an incremental movement of 1.0 mm in negative direction
+root - INFO - y or n: n 
+
+root - INFO - Response was either n or skipped
+
+root - INFO - Cannot confirm visually that the stage has moved. 
+
+root - INFO - Cannot report direction of motion. 
+
+root - INFO - Current position (units): -64133724
+root - INFO - Current position (mm): -0.064133724
+
+root - INFO - Item 11:
+root - INFO - Are physical positive and negative directions of motion consistent with directions of motions defined in SLAC-I-120-005 (y/n): n
+
+root - INFO - Item 12:
+root - INFO - Axis will be homed in positive direction.
+
+root - INFO - Item 13:
+root - INFO - Find Reference in default positive direction ? (y/n): n
+root - INFO - Skip finding reference
+root - INFO - Skip confirming the stage has moved to correct end of travel and readback is 0.
+
+root - INFO - Item 14:
+root - INFO - Incrementally move the stage in positive end of the range of motion.(y/n): n
+root - INFO - Skipped moving to positive end of travel
+root - INFO - 
+Item 15:
+root - INFO - Incrementally move the stage in negative end of the range of motion.(y/n): n
+root - INFO - Skipped moving to negative end of travel
+root - INFO - 
+Item 16:
+root - INFO - Item 16 and 17:
+root - INFO - As we did not move to both end of travel, we cannot find travel range or mid-point. END
+root - INFO - Disconnected to 134.79.219.36
