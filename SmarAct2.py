@@ -26,7 +26,7 @@ class SmarActController2:
         try:
             logging.info("Connecting to {} port".format(self.ip))
             self.client.connect((self.ip,55551))
-            logging.info("Connected to {}".format(self.ip))
+            logging.info("Connected to {}\n".format(self.ip))
         except Exception as e:
             print("Unable to connect")
             logging.critical("Unable to connect: " + str(e))
@@ -48,6 +48,7 @@ class SmarActController2:
             print("No Response. Timeout")
             logging.critical("No Response. Timeout: " + str(e))
             raise Exception("No Response. Timeout: " + str(e))
+        msg = msg.strip()
         return msg
     
     def get_serial_num(self):
@@ -69,7 +70,7 @@ class SmarActController2:
         msg = self.send(":CHAN{}:POS:CURR?".format(channel))
         logging.info("Current position (units): {}". format(msg))
         posn = int(msg)/units
-        logging.info("Current position (mm): {}". format(posn))
+        logging.info("Current position (mm): {}\n". format(posn))
         return posn
 
     def get_max_closed_loop_freq(self,channel:int):
@@ -80,15 +81,15 @@ class SmarActController2:
     def get_positioner_reference_type(self,channel:int):
         msg = self.send(":CHAN{}:TUN:RTYP?".format(channel))
         if int(msg) == 0:
-            logging.info("Positoner reference type: None")
+            logging.info("Positoner reference type: None\n")
         elif int(msg) == 1:
-         logging.info("Positoner reference type: Hard Stop")
+         logging.info("Positoner reference type: Hard Stop\n")
         elif int(msg) == 2:
-         logging.info("Positoner reference type: Single Coded")
+         logging.info("Positoner reference type: Single Coded\n")
         elif int(msg) == 3:
-         logging.info("Positoner reference type: Distance Coded")
+         logging.info("Positoner reference type: Distance Coded\n")
         else: 
-            logging.info("Error in querying positioner reference")
+            logging.info("Error in querying positioner reference\n")
         return msg
 
     def get_velocity(self,channel:int,units: int):
@@ -102,7 +103,7 @@ class SmarActController2:
         msg = self.send(":CHAN{}:ACC?".format(channel))
         logging.info("Positoner acceleration (units/sec2): {}". format(msg))
         accl = int(msg)/units
-        logging.info("Positoner acceleration (mm/sec2): {}". format(accl))
+        logging.info("Positoner acceleration (mm/sec2): {}\n". format(accl))
         return (accl)
 
     def move_absolute(self,channel:int,position: int, units: int):
@@ -217,10 +218,10 @@ class SmarActController2:
            print("Amplifier not enabled. Enabling now")
            self.send_no_response(":CHAN{}:AMPL:ENAB 1".format(channel))
         if mcs2.status_is_referenced(status):
-           findReference =input("Axis referenced. Find Reference again? (yes/no): \n")
+           findReference =input("Axis referenced. Find Reference again? (y/n): \n")
         else:
-           findReference = "yes"
-        if findReference == "yes":
+           findReference = "y"
+        if findReference == "y":
               self.send_no_response(":CHAN{}:REF:OPT 0".format(channel))
               logging.info("Setting ref option to stop at reference mark and set value to 0.")
               self.send_no_response(":REF{}".format(channel))
@@ -253,11 +254,26 @@ class SmarActController2:
     def set_test_constraints(self,channel:int,units: int):
         velo = 0.2 * units
         accl = 0.1 * units
+        print("\nSetting test constraints.")
+        print("Maximum closed loop frequency = 100 Hz.")
+        print("Closed loop move velocity = 0.2 mm/s.")
+        print("Maximum axis acceleration = 0.1 mm/s^2.")
+        logging.info("Setting test constraints.")
+        logging.info("Maximum closed loop frequency = 100 Hz.")
+        logging.info("Closed loop move velocity = 0.2 mm/s.")
+        logging.info("Maximum axis acceleration = 0.1 mm/s^2.")
         self.send_no_response(":CHAN{}:MCLF 100".format(channel))
         self.send_no_response(":CHAN{}:VEL {}".format(channel,velo))
         self.send_no_response(":CHAN{}:ACC {}".format(channel,accl))
-        logging.info("Test Constraints set.")
-        print("Test Constraints set.")
+        logging.info("Test Constraints set.\n")
+        print("Test Constraints set.\n")
+
+    def get_test_constraints(self,channel:int,units: int):
+        print("Reading test constraints from controller.")
+        logging.info("Reading test constraints.")
+        print("Maximum closed loop frequency (Hz): {}".format(self.get_max_closed_loop_freq(channel)))
+        print("Closed loop move velocity (mm/s): {}".format(self.get_velocity(channel,units)))
+        print("Maximum axis acceleration (mm/s^2): {}\n".format(self.get_acceleration(channel,units)))
 
     def get_status(self, channel:int):
         msg = self.send(":CHAN{}:STAT?".format(channel))

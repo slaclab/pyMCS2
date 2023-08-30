@@ -1,23 +1,45 @@
 from SmarAct2 import SmarActController2
+#import cbxfelTestLogConst
 from datetime import datetime
 import logging
+
+tester = input("Tester Name and Initials: \n")
 
 print("Select test schedule phase:")
 print("1:Pre-bakeout")
 print("2:Pre-shipment")
 print("3:Pre-installation")
 print("4:Post-installation")
-testPhase = input("Select from 1 to 4: \n")
+testSch = input("Select from 1 to 4: \n")
 
 print("Select test location:")
 print("1:ANL Lab/Workshop")
 print("2:SLAC Lab/Workshop")
 print("3:Undulator Hall")
-testLoca = input("Select from 1 to 3: \n")
+testLoc = input("Select from 1 to 3: \n")
 
-stationID = input("Select station ID C or D: \n")
-componentID = input("Select component ID X23, X23G, X23E or X24: \n")
-axisID = input("Select axis ID X or Y: \n")
+print("Select station ID:")
+print("1:C")
+print("2:D")
+statID = input("Select from 1 or 2: \n")
+
+if statID == "1":
+  print("Select component ID:")
+  print("1:X24")
+  compID = input("Select from 1: \n")
+    
+if statID == "2":
+  print("Select component ID:")
+  print("1:X23")
+  print("2:X23G")
+  print("3:X24E")
+  compID = input("Select from 1 to 3: \n")
+
+print("Select axis ID:")
+print("1:X")
+print("2:Y")
+axisID = input("Select from 1 or 2: \n")
+
 stageSN = input("Enter serial number etched at the side of the stage: \n")
 
 chan = input("Enter controller channel: \n")
@@ -33,7 +55,7 @@ file_name = 'logs/{}_{}.log'.format(stageSN, date_time)
 #start the logger
 logging.basicConfig(filename=file_name, filemode='w', format='%(name)s - %(levelname)s - %(message)s', level= logging.INFO)
 logging.info("BEGINNING TEST")
-logging.info("Location: {}".format(testLoca))
+logging.info("Test location: {}".format(testLoca))
 logging.info("Station ID: {}".format(stationID))
 logging.info("Axis ID: {}".format(axisID))
 logging.info("Stage serial number: {}".format(stageSN))
